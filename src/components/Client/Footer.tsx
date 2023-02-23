@@ -75,32 +75,65 @@ const FooterLeft2 = styled(FontFooter)`
   }
 `;
 
-const FooterCenter = styled.div`
-  background-color: #f1e4e4;
+const FooterCenter = styled(FontFooter)`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-const FooterRight = styled(FontFooter)`
-  float: left;
-  text-align: right;
-  width: 33.1rem;
-  margin-top: 3.9rem;
-  padding-left: 10rem;
-  margin-right: 16.8rem;
+  img {
+    margin-top: 10rem;
+    position: absolute;
+    width: 21.2rem;
+    height: 6.2rem;
+  }
   p {
-    padding-left: 11.5rem;
-    padding-bottom: 1rem;
-    font-weight: 700;
-    font-size: 1.4rem;
-    line-height: 1.6rem;
+    align-items: center;
+    padding-top: 11rem;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    color: #828282;
+    padding-top: 18.6rem;
+  }
+`;
+const LogoSocial = styled.div`
+  display: inline;
+  align-content: center;
+  ul {
     display: flex;
     align-items: center;
-    color: #000000;
-  }
-  ul {
-    list-style-type: none;
+    align-content: center;
     li {
+      display: inline;
+      padding-top: 2.8rem;
+      display: flex;
+      align-items: center;
+      img {
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+    }
+  }
+`;
+const FooterRight = styled(FontFooter)`
+  width: 33rem;
+  float: right;
+  margin-top: 3.9rem;
+  margin-right: 8rem;
+  ul {
+    float: right;
+    list-style-type: none;
+    p {
+      float: right;
+      padding-left: 11.5rem;
+      padding-bottom: 1rem;
+      font-weight: 700;
+      font-size: 1.4rem;
+      line-height: 1.6rem;
+      display: flex;
+      align-items: center;
+      color: #000000;
+    }
+    li {
+      float: right;
       padding-bottom: 0.3rem;
       font-size: 1.4rem;
       line-height: 2.2rem;
@@ -109,7 +142,7 @@ const FooterRight = styled(FontFooter)`
       color: #0b0b0b;
       img {
         padding-top: 1.7rem;
-        width: 15rem;
+        width: 16.4rem;
         height: 9rem;
         padding-bottom: 2.9rem;
       }
@@ -154,7 +187,26 @@ const FooterClient: React.FC = () => {
           <FooterCenter>
             <img src="/Logo.png" />
             <p> @ Capichi 2021 - A Food Delivery Corporation</p>
-          </FooterCenter>{" "}
+            <LogoSocial>
+              <ul>
+                <li>
+                  <a>
+                    <img src="/Instagram.png"></img>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <img src="/Instagram.png"></img>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <img src="/Instagram.png"></img>
+                  </a>
+                </li>
+              </ul>
+            </LogoSocial>
+          </FooterCenter>
         </Col>
 
         <Col span={8}>
@@ -163,22 +215,17 @@ const FooterClient: React.FC = () => {
               <p>Địa chỉ công ty</p>
               <li> Công ty cổ phần Capichi</li>
               <li>
-                Tầng 4, tòa nhà VietinBank, số 1 Lê Thái Tông, phường Cầu giấy,
-                quận Cầu Giấy, Hà Nội
+                Tầng 4, tòa nhà VietinBank, số 1 Lê Thái Tông, phường Cầu giấy, quận Cầu Giấy, Hà Nội
               </li>
               <li>
-                Giấy CN ĐKDN số: 02264651313, do sở Kế hoạch và Đầu tư TP. Hà
-                Nội cấp ngày 11/12/2020, sửa đổi lần thứ 21, ngày 01/02/2021
+                Giấy CN ĐKDN số: 02264651313, do sở Kế hoạch và Đầu tư TP. Hà Nội cấp ngày 11/12/2020, sửa đổi lần thứ 21, ngày 01/02/2021
               </li>
               <li>
-                Số điện thoại:<span style={{ color: "red" }}> 1900 1522</span>{" "}
+                Số điện thoại:<span style={{ color: "red" }}> 1900 1522</span>
               </li>
               <li>
                 Email:
-                <span style={{ color: "#2E92FF" }}>
-                  {" "}
-                  capichi@gmail.com
-                </span>{" "}
+                <span style={{ color: "#2E92FF" }}>capichi@gmail.com</span>
               </li>
               <li>
                 <img src="image 2.png"></img>
