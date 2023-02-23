@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+}
+.header{
+    text-align: center;
+ 
+    p {    
+    float: 'left';
+    color:red;
+    padding-left: 50px;
+    }
+        .navbar{
+            ul.Header_right{
+                list-style-type: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                float: right;
+                li{
+                    list-style-type: none;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding-right: 5px;
+
+                }
+            }
+}
+}
+
