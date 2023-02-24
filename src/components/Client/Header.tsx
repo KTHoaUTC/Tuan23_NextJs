@@ -50,7 +50,7 @@ const HomeHeader = styled.div`
   max-width: 144rem;
   min-height: 6rem;
   background-color: #ffffff;
-
+  overflow: hidden;
 `;
 const HeaderLogo = styled.div`
   position: absolute;
@@ -137,16 +137,10 @@ const Button_Langue = styled(FontHeader)`
   color: #000000;
   border-radius: 1rem;
 `;
-const Banner = styled.div`
-  img {
-   position: relative;
-    width: 1312px;
-    height: 496px;
-  }
-`;
 const HeaderClient: React.FC = () => {
+
   return (
-    <HomeHeader>
+    <HomeHeader style={{ overflow: 'hidden'}}>
       <Row>
         <Col span={7}>
           <Row>
@@ -182,7 +176,7 @@ const HeaderClient: React.FC = () => {
           <Header_Right>
             <ul>
               <li>
-                <Button>Order </Button>{" "}
+                <Button>Order </Button>
               </li>
               <li>
                 <Button_Langue>
@@ -196,18 +190,12 @@ const HeaderClient: React.FC = () => {
                 </Button_Langue>
               </li>
               <li>
-                {" "}
                 <a> Đăng Nhập </a>
               </li>
             </ul>
           </Header_Right>
         </Col>
       </Row>
-      <hr></hr>
-      <Banner>
-        <img src="/Banner.jpg" />
-      </Banner>
-      <hr></hr>
     </HomeHeader>
   );
 };

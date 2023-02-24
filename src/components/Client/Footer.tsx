@@ -11,6 +11,8 @@ const FontFooter = styled.div`
 
 const FooterMain = styled(FontFooter)`
   background-color: #ffffff;
+  height: 100%;
+  width: 100%;
 `;
 const FooterLeft = styled.div`
   margin-top: 3.9rem;
@@ -152,7 +154,7 @@ const FooterRight = styled(FontFooter)`
 
 const FooterClient: React.FC = () => {
   return (
-    <FooterMain>
+    <FooterMain style={{ textAlign: 'center' }}>
       <Row>
         <Col span={8}>
           <FooterLeft>
