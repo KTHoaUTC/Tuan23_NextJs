@@ -1,66 +1,100 @@
-import React, { useState } from "react";
-import { Button, Form, Input, InputNumber, Modal, Select } from "antd";
-import { EditOutlined } from "@ant-design/icons";
+import React, { useState } from 'react';
+import { Button, Form, Input, InputNumber, Modal, Select } from 'antd';
+import { EditOutlined } from '@ant-design/icons';
 
-const EditProduct: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+interface Values {
+  title: string;
+  description: string;
+  modifier: string;
+}
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
+interface CollectionCreateFormProps {
+  open: boolean;
+  onCreate: (values: Values) => void;
+  onCancel: () => void;
+}
 
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
+const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
+  open,
+  onCreate,
+  onCancel,
+}) => {
+  const [form] = Form.useForm();
   return (
-    <>
-      <Button
-        style={{ float: "right", margin: "5px" }}
-        type="primary"
-        onClick={showModal}
+    <Modal
+      open={open}
+      title="Sửa Sản Phẩm"
+      okText="Edit"
+      cancelText="Cancel"
+      onCancel={onCancel}
+      onOk={() => {
+        form
+          .validateFields()
+          .then((values) => {
+            form.resetFields();
+            onCreate(values);
+          })
+          .catch((info) => {
+            console.log('Validate Failed:', info);
+          });
+      }}
+    >
+      <Form
+        form={form}
+        layout="vertical"
+        name="form_in_modal"
+        initialValues={{ modifier: 'public' }}
       >
-        <EditOutlined />
-      </Button>
-      <Modal
-        title="Sửa sản phẩm"
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
-        <Form
-          labelCol={{ span: 6 }}
-          wrapperCol={{ span: 14 }}
-          layout="horizontal"
-        >
-          <Form.Item label="Tên Sản Phẩm">
+        <Form.Item name="id" label="Mã Sản Phẩm" rules={[{ required: true }]}>
             <Input />
           </Form.Item>
-          <Form.Item label="Số Lượng">
+          <Form.Item name="loaiSanPham" label="Tên Sản Phẩm" rules={[{ required: true }]}>
+            <Input />
+          </Form.Item>
+          <Form.Item name="soLuong" label="Số Lượng"rules={[{ required: true }]}>
             <InputNumber />
           </Form.Item>
-          <Form.Item label="Trạng Thái">
+          <Form.Item name="trangThai" label="Trạng Thái"rules={[{ required: true }]}>
             <Select>
               <Select.Option value="1">Còn Hàng</Select.Option>
               <Select.Option value="2">Hết Hàng</Select.Option>
             </Select>
           </Form.Item>
-          <Form.Item label="Mô Tả">
+          <Form.Item name="moTa"label="Mô Tả"rules={[{ required: true }]}>
             <Input />
           </Form.Item>
-          <Form.Item label="">
-            <Button style={{ float: "right" }} type="primary">
-              Sửa
-            </Button>
-          </Form.Item>
-        </Form>
-      </Modal>
-    </>
+      </Form>
+    </Modal>
   );
 };
 
-export default EditProduct;
+const CreateCategory: React.FC = () => {
+  const [open, setOpen] = useState(false);
+
+  const onCreate = (values: any) => {
+    console.log('Received values of form: ', values);
+    setOpen(false);
+  };
+
+  return (
+    <div>
+      <Button
+        type="primary"
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
+       <EditOutlined />
+      </Button>
+      <CollectionCreateForm
+        open={open}
+        onCreate={onCreate}
+        onCancel={() => {
+          setOpen(false);
+        }}
+      />
+    </div>
+  );
+};
+
+export default CreateCategory;

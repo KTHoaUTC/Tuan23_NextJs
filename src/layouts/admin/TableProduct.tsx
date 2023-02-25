@@ -1,10 +1,9 @@
 import React from "react";
-import { Button, Space, Table, Tag } from "antd";
+import { Space, Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import CreateProduct from "@/components/admin/CreateProduct";
 import EditProduct from "@/components/admin/EditProduct";
-import DeleteProduct from "@/components/admin/DeleteProduct";
+import DeleteProduct from "@/components/admin/DeleteNhanVien";
 interface DataType {
   key: string;
   id: string;
@@ -95,7 +94,6 @@ const data: DataType[] = [
 const AppTable: React.FC = () => (
   <>
     <CreateProduct></CreateProduct>
-    {/* <CreateCategory></CreateCategory> */}
     <Table columns={columns} dataSource={data} />;
   </>
 );

@@ -140,7 +140,7 @@ const ContentTest2: React.FC = () => {
   useEffect(() => {
     (async () => {
       try {
-        const url = `https://fakestoreapi.com/products`;
+        const url = `https://dbjson.vercel.app/api/products`;
         const products = await axios.get(url);
         const productsData = products.data;
         setProducts(productsData);
@@ -158,6 +158,14 @@ const ContentTest2: React.FC = () => {
       <List
         style={{ paddingLeft: "15rem" }}
         grid={{ gutter: 16, column: 3 }}
+        itemLayout="vertical"
+        size="large"
+        pagination={{
+          onChange: (page) => {
+            console.log(page);
+          },
+          pageSize: 9,
+        }}
         dataSource={products}
         renderItem={(item) => (
           <List.Item key={item.id}>

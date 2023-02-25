@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Form, Input, InputNumber, Modal, Radio, Select } from 'antd';
+import { Button, Form, Input, Modal, Select } from 'antd';
+import { EditOutlined } from '@ant-design/icons';
 
 interface Values {
   title: string;
@@ -22,8 +23,8 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
   return (
     <Modal
       open={open}
-      title="Thêm Loại Sản Phẩm"
-      okText="Create"
+      title="Sửa Loại Sản Phẩm"
+      okText="Edit"
       cancelText="Cancel"
       onCancel={onCancel}
       onOk={() => {
@@ -44,31 +45,28 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
         name="form_in_modal"
         initialValues={{ modifier: 'public' }}
       >
-        
-        <Form.Item name="id" label="Mã Sản Phẩm" rules={[{ required: true }]}>
+        <Form.Item name="id" label="Mã Loại Sản Phẩm" rules={[{ required: true }]}>
             <Input />
           </Form.Item>
-          <Form.Item name="loaiSanPham" label="Tên Sản Phẩm" rules={[{ required: true }]}>
+          <Form.Item name="loaiSanPham" label="Loại Sản Phẩm" rules={[{ required: true }]}>
             <Input />
           </Form.Item>
-          <Form.Item name="soLuong" label="Số Lượng"rules={[{ required: true }]}>
-            <InputNumber />
+  
+          <Form.Item name="moTa" label="Mô tả" rules={[{ required: true }]}>
+            <Input />
           </Form.Item>
-          <Form.Item name="trangThai" label="Trạng Thái"rules={[{ required: true }]}>
-            <Select>
+          <Form.Item name="trangThai" label="Trạng Thái" rules={[{ required: true }]}>
+          <Select>
               <Select.Option value="1">Còn Hàng</Select.Option>
               <Select.Option value="2">Hết Hàng</Select.Option>
             </Select>
-          </Form.Item>
-          <Form.Item name="moTa"label="Mô Tả"rules={[{ required: true }]}>
-            <Input />
           </Form.Item>
       </Form>
     </Modal>
   );
 };
 
-const CreateProduct: React.FC = () => {
+const CreateCategory: React.FC = () => {
   const [open, setOpen] = useState(false);
 
   const onCreate = (values: any) => {
@@ -79,13 +77,12 @@ const CreateProduct: React.FC = () => {
   return (
     <div>
       <Button
-        style={{marginBottom: '2rem'}}
         type="primary"
         onClick={() => {
           setOpen(true);
         }}
       >
-        + New
+       <EditOutlined />
       </Button>
       <CollectionCreateForm
         open={open}
@@ -98,4 +95,4 @@ const CreateProduct: React.FC = () => {
   );
 };
 
-export default CreateProduct;
+export default CreateCategory;

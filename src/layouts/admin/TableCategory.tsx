@@ -2,8 +2,9 @@ import React from "react";
 import { Space, Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import EditProduct from "@/components/admin/EditProduct";
-import DeleteProduct from "@/components/admin/DeleteProduct";
+import DeleteProduct from "@/components/admin/DeleteNhanVien";
 import CreateCategory from "@/components/admin/CreateCategory";
+import EditCategory from "@/components/admin/EditCategory";
 interface DataType {
   key: string;
   id: string;
@@ -57,7 +58,7 @@ const columns: ColumnsType<DataType> = [
     render: (_, record) => (
       <Space size="middle">
         <a>
-          <EditProduct></EditProduct>
+          <EditCategory></EditCategory>
         </a>
         <a>
           <DeleteProduct></DeleteProduct>

@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
-import { Button, Form, Input, InputNumber, Modal, Radio, Select } from 'antd';
+import { Button, Form, Input, Modal, Select } from 'antd';
+import { EditOutlined } from '@ant-design/icons';
+
+interface DataType {
+    id: number;
+    email: string;
+    username: string;
+    password: string;
+    phone: number;
+  }
 
 interface Values {
   title: string;
@@ -22,8 +31,8 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
   return (
     <Modal
       open={open}
-      title="Thêm Loại Sản Phẩm"
-      okText="Create"
+      title="Sửa Loại Sản Phẩm"
+      okText="Edit"
       cancelText="Cancel"
       onCancel={onCancel}
       onOk={() => {
@@ -40,27 +49,28 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
     >
       <Form
         form={form}
-        layout="vertical"
+        labelCol={{ span: 6 }}
+        wrapperCol={{ span: 14 }}
+        layout="horizontal"
         name="form_in_modal"
         initialValues={{ modifier: 'public' }}
       >
-        
-        <Form.Item name="id" label="Mã Sản Phẩm" rules={[{ required: true }]}>
+          <Form.Item name="id" label="Mã Nhân Viên" rules={[{ required: true }]}>
             <Input />
           </Form.Item>
-          <Form.Item name="loaiSanPham" label="Tên Sản Phẩm" rules={[{ required: true }]}>
+          <Form.Item name="email" label="Email" rules={[{ required: true }]}>
             <Input />
           </Form.Item>
-          <Form.Item name="soLuong" label="Số Lượng"rules={[{ required: true }]}>
-            <InputNumber />
+          <Form.Item name="userName" label="Tên" rules={[{ required: true }]}>
+            <Input />
           </Form.Item>
-          <Form.Item name="trangThai" label="Trạng Thái"rules={[{ required: true }]}>
-            <Select>
-              <Select.Option value="1">Còn Hàng</Select.Option>
-              <Select.Option value="2">Hết Hàng</Select.Option>
-            </Select>
+          <Form.Item name="passWord" label="Mật Khẩu" rules={[{ required: true }]}>
+            <Input />
           </Form.Item>
-          <Form.Item name="moTa"label="Mô Tả"rules={[{ required: true }]}>
+          <Form.Item name="phoneNumber" label="Số Điện Thoại" rules={[{ required: true }]}>
+            <Input />
+          </Form.Item>
+          <Form.Item name="gioiTinh" label="Giới Tính" rules={[{ required: true }]}>
             <Input />
           </Form.Item>
       </Form>
@@ -68,7 +78,7 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
   );
 };
 
-const CreateProduct: React.FC = () => {
+const EditNhanVien: React.FC = () => {
   const [open, setOpen] = useState(false);
 
   const onCreate = (values: any) => {
@@ -79,13 +89,12 @@ const CreateProduct: React.FC = () => {
   return (
     <div>
       <Button
-        style={{marginBottom: '2rem'}}
         type="primary"
         onClick={() => {
           setOpen(true);
         }}
       >
-        + New
+       <EditOutlined />
       </Button>
       <CollectionCreateForm
         open={open}
@@ -98,4 +107,4 @@ const CreateProduct: React.FC = () => {
   );
 };
 
-export default CreateProduct;
+export default EditNhanVien;
