@@ -117,7 +117,7 @@ const EditNhanVien = ({
     phone: number;
   };
 }) => {
-  console.log("hhdsud");
+ 
   const [open, setOpen] = useState(false);
   const [nhanviens, setNhanViens] = useState<DataType[]>([]);
 
