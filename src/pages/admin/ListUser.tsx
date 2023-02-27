@@ -1,4 +1,4 @@
- import TableNhanVien from "@/layouts/admin/TableNhanVien";
+ import TableNhanVien from "@/layouts/admin/TableUser";
 import AppAdmin from "@/layouts/admin/LayoutAdmin";
 import type { ReactElement } from "react";
 import type { NextPageWithLayout } from "../_app";

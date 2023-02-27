@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { Button, Form, Input, Modal, Radio } from "antd";
-import axios from "axios";
+import { Button, Form, Input, Modal } from "antd";
+import { EditOutlined } from "@ant-design/icons";
 import { apis } from "@/apis/ApiNhanVien";
-
-
 interface DataType {
   id: number;
   email: string;
@@ -11,23 +9,30 @@ interface DataType {
   password: string;
   phone: number;
 }
-interface CollectionCreateFormProps {
+interface CollectionEditFormProps {
   open: boolean;
-  onCreate: any;
+  onUpdate: any;
   onCancel: () => void;
+  users: {
+    id: number;
+    email: string;
+    username: string;
+    password: string;
+    phone: number;
+  };
 }
-
-const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
+const CollectionEditForm: React.FC<CollectionEditFormProps> = ({
   open,
-  onCreate,
+  onUpdate,
   onCancel,
+  users,
 }) => {
   const [form] = Form.useForm();
   return (
     <Modal
       open={open}
-      title="Thêm Mới Nhân Viên"
-      okText="Create"
+      title="Sửa Loại Sản Phẩm"
+      okText="Edit"
       cancelText="Cancel"
       onCancel={onCancel}
       onOk={() => {
@@ -35,7 +40,7 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
           .validateFields()
           .then((values) => {
             form.resetFields();
-            onCreate(values);
+            onUpdate(users.id, values);
           })
           .catch((info) => {
             console.log("Validate Failed:", info);
@@ -43,7 +48,6 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
       }}
     >
       <Form
-        style={{ maxWidth: 600 }}
         form={form}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
@@ -51,16 +55,27 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
         name="form_in_modal"
         initialValues={{ modifier: "public" }}
       >
-        {/* <Form.Item name="id" label="Mã Nhân Viên" rules={[{ required: true }]}>
+        {/* <Form.Item  name="id" label="Mã Nhân Viên" rules={[{ required: true }]}>
           <Input />
         </Form.Item> */}
-        <Form.Item name="email" label="Email" rules={[{ required: true }]}>
-          <Input />
-        </Form.Item>
-        <Form.Item name="username" label="Tên" rules={[{ required: true }]}>
+        <Form.Item
+          initialValue={users.email}
+          name="email"
+          label="Email"
+          rules={[{ required: true }]}
+        >
           <Input />
         </Form.Item>
         <Form.Item
+          initialValue={users.username}
+          name="username"
+          label="Tên"
+          rules={[{ required: true }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          initialValue={users.password}
           name="password"
           label="Mật Khẩu"
           rules={[{ required: true }]}
@@ -68,6 +83,7 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
           <Input />
         </Form.Item>
         <Form.Item
+          initialValue={users.phone}
           name="phone"
           label="Số Điện Thoại"
           rules={[{ required: true }]}
@@ -78,31 +94,46 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
     </Modal>
   );
 };
-
-const CreateNhanVien = ({ resetData }: { resetData: any }) => {
+const EditUser = ({
+  users,
+  resetData,
+}: {
+  resetData: any;
+  users: {
+    id: number;
+    email: string;
+    username: string;
+    password: string;
+    phone: number;
+  };
+}) => {
   const [open, setOpen] = useState(false);
   const [nhanviens, setNhanViens] = useState<DataType[]>([]);
-  const handleCreate = async (newData: DataType) => {
-    const result =  await apis.CreateDataNhanVien(newData);
-    setNhanViens([...nhanviens, newData]);
-    resetData(result.nhanviens)
+  const handleEdit = async (id: number, updateData: DataType) => {
+    const result = await apis.EditDataNhanVien(id, updateData);
+    setNhanViens(
+      nhanviens.map((item) =>
+        item.id === id ? { ...item, ...result.nhanviens } : item
+      )
+    );
+    resetData(id, nhanviens);
     setOpen(false);
   };
 
   return (
     <div>
       <Button
-        style={{ marginBottom: "2rem", float: "right" }}
         type="primary"
         onClick={() => {
           setOpen(true);
         }}
       >
-        + New
+        <EditOutlined />
       </Button>
-      <CollectionCreateForm
+      <CollectionEditForm
         open={open}
-        onCreate={handleCreate}
+        users={users}
+        onUpdate={handleEdit}
         onCancel={() => {
           setOpen(false);
         }}
@@ -111,4 +142,4 @@ const CreateNhanVien = ({ resetData }: { resetData: any }) => {
   );
 };
 
-export default CreateNhanVien;
+export default EditUser;

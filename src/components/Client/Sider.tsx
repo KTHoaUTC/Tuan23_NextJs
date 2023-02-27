@@ -12,6 +12,9 @@ const FontMain = styled.div`
 `;
 const MenuContent = styled(FontMain)`
   float: left;
+  @media screen and (max-width: 50rem) {
+    display: none;
+  }
   p {
     width: 19rem;
     height: 4rem;

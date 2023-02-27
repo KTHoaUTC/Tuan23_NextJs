@@ -65,7 +65,7 @@ const items: MenuItem[] = [
   getItem(
     "QL Nhân vien",
     "7",
-    <Link href={"/admin/ListNhanVien"}>
+    <Link href={"/admin/ListUser"}>
       <FileOutlined />
     </Link>
   ),

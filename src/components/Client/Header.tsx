@@ -1,22 +1,7 @@
-import {
-  DownOutlined,
-  SearchOutlined,
-  SmileOutlined
-} from "@ant-design/icons";
-import {
-  Button,
-  Col,
-  Dropdown,
-  Input,
-  MenuProps,
-  message,
-  Row,
-  Space
-} from "antd";
+import { DownOutlined, SearchOutlined, SmileOutlined } from "@ant-design/icons";
+import { Button, Dropdown, Input, MenuProps, message, Space } from "antd";
 import React from "react";
 import styled from "styled-components";
-
-// const { Header } = Layout;
 const items: MenuProps["items"] = [
   {
     label: "Hồ Chí Minh",
@@ -36,166 +21,136 @@ const menuProps = {
   items,
   onClick: handleMenuClick,
 };
-
-const FontHeader= styled.div`
+const FontHeader = styled.div`
   font-family: "Gilroy";
-    font-style: normal;
-    font-weight: 400;
-`
-
-const HomeHeader = styled.div`
-  text-align: center;
-  align-items: center;
-  position: relative;
-  max-width: 144rem;
-  min-height: 6rem;
-  background-color: #ffffff;
-  overflow: hidden;
+  font-style: normal;
+  font-weight: 400;
 `;
-const HeaderLogo = styled.div`
-  position: absolute;
-  img {
+const HomeHeader = styled(FontHeader)`
+  display: flex;
+  max-width: 144rem;
+  min-height: 5rem;
+  background: #ffffff;
+  align-items: center;
+  align-content: center;
+  @media screen and (max-width: 50rem) {
+    background-color: #007aff;
+  }
+  .logoHeader {
     max-width: 13.8rem;
     height: 4.1rem;
-    padding-top: 1.9rem;
-    padding-left: 6.4rem;
+    padding: 0.7rem 14rem 0rem 6.4rem;
+    @media screen and (max-width: 50rem) {
+      max-width: 8rem;
+      height: 2rem;
+      padding-top: 0.1rem;
+      padding-left: 15rem;
+    }
   }
-`;
-const ButtonAddress = styled(FontHeader)`
-  position: absolute;
-  width: 7.4rem;
-  height: 3.4rem;
-  padding-top: 2.4rem;
-  padding-left: 3.7rem;
-
-  /* bg/3 */
-  Button {
-    font-size: 14px;
-    line-height: 22px;
+  .addressHeader {
+    max-width: 20rem;
     border: 0.1rem solid #fcdab0;
     border-radius: 0.5rem;
+    margin-right: 5rem;
+    font-size: 1.5rem;
   }
-`;
-const SearchInput = styled(FontHeader)`
-  position: absolute;
-  width: 47rem;
-  height: 5rem;
-  padding-top: 1.5rem;
-  padding-left: 3.7rem;
-  Input {
-    font-size: 1.4rem;
-    line-height: 2.2rem;
-    color: #828282;
-    flex: none;
-    border: 0.1rem solid #e0e1e0;
-    border-radius: 1rem;
-    width: 5rem;
+  .searchHeader {
+    max-width: 58rem;
+    height: 4rem;
+    padding-top: 0.6rem;
+    padding-right: 4rem;
+    Input {
+      font-size: 1.4rem;
+      color: #828282;
+      flex: none;
+      width: 40rem;
+      height: 2.4rem;
+    }
+    
   }
-`;
-const Header_Right = styled(FontHeader)`
-  ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    list-style-type: none;
-    li {
-      display: flex;
-      align-items: center;
-      padding-top: 1rem;
-      Button {
-        width: 74px;
-        height: 34px;
-        background-color: #ff881d;
-        border-radius: 10px;
-        border: 1px solid #fcdab0;  
-        color: white;
-        font-weight: 700;
-        font-size: 16px;
+  .buttonHeader {
+    max-width: 40rem;
+    padding-right: 2.3rem;
+    .ButtonOrder {
+      cursor: pointer;
+      width: 6rem;
+      height: 2.3rem;
+      background-color: #ff881d;
+      border-radius: 1rem;
+      border: 0.1rem solid #ff881d;
+      color: white;
+      font-weight: 700;
+      font-size: 1.2rem;
+      @media screen and (max-width: 50rem) {
+      width: 72px;
+      height: 0px;
+      flex-wrap: wrap;
+      padding-right: 1rem;
+    }
+    }
+  }
+  .language {
+    padding-right: 1rem;
+    text-align: center;
+    .DropdownLang {
+      background-color: #ff881d;
+      color: white;
+      font-weight: 700;
+      border: 0.1rem solid #ff881d;
+      .ButtonLang {
+        border-radius: 1rem;
+        font-size: 1.6rem;
         line-height: 24px;
-      }
-      a {
-        padding-left: 2.3rem;
-        color: #007aff;
-        text-decoration: underline;
-        flex: none;
-        align-self: stretch;
-        flex-grow: 1;
-        font-weight: 700;
-        font-size: 1.2rem;
-        line-height: 1.6rem;
       }
     }
   }
-`;
-const Button_Langue = styled(FontHeader)`
-  padding-left: 2.3rem;
-  font-weight: 400;
-  font-size: 1.4rem;
-  line-height: 2.2rem;
-  text-align: center;
-  color: #000000;
-  border-radius: 1rem;
+  .loginHeader {
+    padding-left: 2.3rem;
+    color: #007aff;
+    text-decoration: underline;
+    flex: none;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
 `;
 const HeaderClient: React.FC = () => {
-
   return (
-    <HomeHeader style={{ overflow: 'hidden'}}>
-      <Row>
-        <Col span={7}>
-          <Row>
-            <Col span={12}>
-              <HeaderLogo>
-                <img src="/Logo.png" />
-              </HeaderLogo>
-            </Col>
-            <Col span={12}>
-              <ButtonAddress>
-                <Dropdown menu={menuProps}>
-                  <Button>
-                    <Space>
-                      Hà Nội
-                      <DownOutlined style={{ color: "#FCDAB0" }} />
-                    </Space>
-                  </Button>
-                </Dropdown>
-              </ButtonAddress>
-            </Col>
-          </Row>
-        </Col>
-
-        <Col span={10}>
-          <SearchInput>
-            <Input
-              placeholder="Nhập từ khóa"
-              prefix={<SearchOutlined style={{ color: "#FCDAB0" }} />}
-            />
-          </SearchInput>
-        </Col>
-        <Col span={7}>
-          <Header_Right>
-            <ul>
-              <li>
-                <Button>Order </Button>
-              </li>
-              <li>
-                <Button_Langue>
-                  <Dropdown.Button
-                    menu={menuProps}
-                    placement="bottom"
-                    icon={<SmileOutlined />}
-                  >
-                    EN
-                  </Dropdown.Button>
-                </Button_Langue>
-              </li>
-              <li>
-                <a> Đăng Nhập </a>
-              </li>
-            </ul>
-          </Header_Right>
-        </Col>
-      </Row>
+    <HomeHeader>
+      <div className="logoHeader">
+        <img className="imgLogo" src="/Logo.png" alt="" />
+      </div>
+      <div className="addressHeader">
+        <Dropdown menu={menuProps}>
+          <Button>
+            <Space>
+              Hà Nội
+              <DownOutlined style={{ color: "#FCDAB0" }} />
+            </Space>
+          </Button>
+        </Dropdown>
+      </div>
+      <div className="searchHeader">
+        <Input
+          placeholder="Nhập từ khóa"
+          prefix={<SearchOutlined style={{ color: "#FCDAB0" }} />}
+        />
+      </div>
+      <div className="buttonHeader">
+        <button className="ButtonOrder"> Order</button>
+      </div>
+      <div className="language">
+        <Dropdown className="DropdownLang" menu={menuProps}>
+          <Button className="ButtonLang">
+            <Space>
+              EN
+              <SmileOutlined style={{ color: "#FCDAB0" }} />
+            </Space>
+          </Button>
+        </Dropdown>
+      </div>
+      <div className="loginHeader">
+        <a> Đăng Nhập </a>
+      </div>
     </HomeHeader>
   );
 };

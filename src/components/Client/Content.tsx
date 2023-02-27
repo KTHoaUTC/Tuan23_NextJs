@@ -1,8 +1,12 @@
 import React from "react";
+import VirtualList from "rc-virtual-list";
+
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Card, Layout, List, Skeleton } from "antd";
+import { Card, Layout, Skeleton } from "antd";
 import styled from "styled-components";
+import { List } from "antd";
+
 const { Content } = Layout;
 const FontMain = styled.div`
   font-family: "Gilroy";
@@ -10,20 +14,14 @@ const FontMain = styled.div`
   font-weight: 400;
   font-size: 1.6rem;
 `;
-const ContentFood = styled.div`
-  margin-left: 8rem;
-  //height: 30rem;
-  ul {
-    display: flex;
-    list-style-type: none;
-    li {
-      padding-left: 2rem;
-      display: flex;
-      align-items: center;
-    }
-  }
-`;
-const ContentTitle = styled(FontMain)`
+const ContentFood = styled(FontMain)`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  @media screen and (max-width: 50rem) {
+    flex-wrap: nowrap;
+    background-color: red;
+  } 
   h3 {
     width: 19rem;
     overflow: hidden;
@@ -34,107 +32,107 @@ const ContentTitle = styled(FontMain)`
     font-size: 2.2rem;
     line-height: 2.2rem;
   }
-`;
-const Address = styled(FontMain)`
-  p {
+  .addressRestau {
     font-size: 1.2rem;
     line-height: 1.4rem;
     color: #000000;
-    //text-overflow: ellipsis;
-    img {
-      padding-right: 0.5rem;
-    }
   }
-`;
-const TrangThai = styled(FontMain)`
-  font-size: 1.2rem;
-  line-height: 1.4rem;
-  color: #1dac0e;
-  display: flex;
-  align-items: center;
-  align-content: center;
-  padding-top: 0.5rem;
-  img {
-    padding-right: 0.5rem;
-  }
-`;
-const Hours = styled(FontMain)`
-  color: yellow;
-  padding-top: 0.9rem;
-  ul {
-    padding-left: 0rem;
+  .TrangThai {
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    color: #1dac0e;
     display: flex;
-    list-style-type: none;
-    li {
+    align-items: center;
+    align-content: center;
+    padding-top: 0.5rem;
+  }
+  .Hours {
+    color: yellow;
+    ul {
       padding-left: 0rem;
       display: flex;
-      align-items: center;
-      img {
+      list-style-type: none;
+      li {
         padding-right: 0.5rem;
-      }
-      button {
-        width: 7.9rem;
-        height: 2rem;
-        border: none;
-        background-color: rgba(46, 146, 255, 0.2);
-        border-radius: 0.7rem;
-        font-size: 1.2rem;
-        line-height: 1.4rem;
         display: flex;
         align-items: center;
-        text-align: center;
-        color: #000000;
+        button {
+          width: 7.9rem;
+          height: 2rem;
+          border: none;
+          background-color: rgba(46, 146, 255, 0.2);
+          border-radius: 0.7rem;
+          font-size: 1.2rem;
+          line-height: 1.4rem;
+          display: flex;
+          align-items: center;
+          text-align: center;
+          color: #000000;
+        }
       }
     }
+  }
+  .Contact {
+    padding-bottom: 0rem;
+    ul {
+      padding-left: 0rem;
+      display: flex;
+      list-style-type: none;
+      li {
+        display: flex;
+        align-items: center;
+        padding-left: 0.5rem;
+        button {
+          color: white;
+          font-weight: 700;
+          font-size: 1.4rem;
+          border: none;
+          display: flex;
+          padding: 0.8rem 1.6rem;
+          width: 9rem;
+          height: 3.2rem;
+          background-color: #ff881d;
+          box-shadow: 0px 2px 4px rgba(40, 41, 61, 0.04),
+            0px 8px 16px rgba(96, 97, 112, 0.16);
+          border-radius: 1rem;
+        }
+        img {
+          width: 6rem;
+          height: 6rem;
+          margin-left: 2rem;
+        }
+      }
+    }
+  }
+  .icon {
+    padding-right: 0.5rem;
+    width: 1.5rem;
   }
 `;
-const Contact = styled(FontMain)`
-  ul {
-    padding-left: 0rem;
-    display: flex;
-    list-style-type: none;
-    li {
-      display: flex;
-      align-items: center;
-      padding-left: 0.5rem;
-      // padding-top: 0rem;
-      button {
-        color: white;
-        font-weight: 700;
-        font-size: 1.4rem;
-        line-height: 1.6rem;
-        border: none;
-        display: flex;
-        padding: 0.8rem 1.6rem;
-        width: 9rem;
-        height: 3.2rem;
-        background-color: #ff881d;
-        box-shadow: 0px 2px 4px rgba(40, 41, 61, 0.04),
-          0px 8px 16px rgba(96, 97, 112, 0.16);
-        border-radius: 1rem;
-      }
-      img {
-        width: 6rem;
-        height: 6rem;
-        margin-left: 2rem;
-      }
-    }
-  }
+const ItemCard = styled.div`
+  display: flex;
+  flex-basis: 100%;
+  @media screen and (max-width: 50rem) {
+    margin-left: 1rem;
+    flex-wrap: wrap;
+  } 
 `;
 interface Product {
   id: number;
   name: string;
+  address: string;
   img: string;
-  desc: string;
-  price: number;
+  trangthai: string;
+  map: string;
 }
-function ContentClient() {
-  const [products, setProducts] = useState([]);
+
+const ContentClient: React.FC = () => {
+  const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     (async () => {
       try {
-        const url = `https://dbjson.vercel.app/api/products`;
+        const url = `http://localhost:3100/listFood`;
         const products = await axios.get(url);
         const productsData = products.data;
         setProducts(productsData);
@@ -147,141 +145,73 @@ function ContentClient() {
   if (isLoading) {
     return <Skeleton active> </Skeleton>;
   }
-
   return (
-    <Content style={{ padding: "0 24px", minHeight: 350 }}>
-      <ContentFood>
-        <List
-          style={{margin:'0rem 3rem'}}
-          grid={{ gutter: 16, column: 3 }}
-          dataSource={products}
-          renderItem={(item) => (
-            <List.Item>
-               <Card
-                hoverable
-                style={{ width: 340, height: "95%" }}
-                cover={
-                  <img
-                    style={{ height: "20rem" }}
-                    alt={item.name}
-                    src={item.img}
-                  />
-                }
-              >
-                <ContentTitle>
-                  <h3>{item.name}</h3>
-                  <Address>
-                    <p>
-                      {" "}
-                      <img src="/Vector.png" />
-                      {item.desc}
-                      <span style={{ color: "#007AFF" }}>({item.price})</span>
-                    </p>
-                  </Address>
-                  <TrangThai>
-                    <img src="Vector (1).png" /> Đang mở cửa
-                  </TrangThai>
-                  <Hours>
-                    <ul>
-                      <li>
-                        <img src="Vector (2).png" />
-                      </li>
-                      <li>
-                        <button>08:30 - 10:30</button>
-                      </li>
-                      <li>
-                        <button
-                          style={{
-                            backgroundColor: "rgba(29, 172, 14, 0.2)",
-                          }}
-                        >
-                          08:30 - 10:30
-                        </button>
-                      </li>
-                    </ul>
-                  </Hours>
-                  <br></br>
-                  <Contact>
-                    <ul>
-                      <li>
-                        <button>Delivery</button>
-                      </li>
-                      <li>
-                        <img src="\Group 47.png" />
-                      </li>
-                    </ul>
-                  </Contact>
-                </ContentTitle>
-              </Card>
-            </List.Item>
-          )}
-        />
-
-        <ul>
-          {products.map((item, index) => (
-            <li>
+    <ContentFood>
+      <List
+        style={{ paddingLeft: "15rem", paddingTop: "1.5rem" }}
+        grid={{ gutter: 16, column: 3 }}
+        itemLayout="vertical"
+        size="large"
+        pagination={{
+          onChange: (page) => {
+            console.log(page);
+          },
+          pageSize: 9,
+        }}
+        dataSource={products}
+        renderItem={(item) => (
+          <ItemCard>
+            <List.Item key={item.id}>
               <Card
                 hoverable
                 style={{ width: 340, height: "95%" }}
-                cover={
-                  <img
-                    style={{ height: "20rem" }}
-                    alt={item.name}
-                    src={item.img}
-                  />
-                }
+                cover={<img alt={item.name} src={item.img} />}
               >
-                <ContentTitle>
-                  <h3>{item.name}</h3>
-                  <Address>
-                    <p>
-                      {" "}
-                      <img src="/Vector.png" />
-                      {item.desc}
-                      <span style={{ color: "#007AFF" }}>({item.price})</span>
-                    </p>
-                  </Address>
-                  <TrangThai>
-                    <img src="Vector (1).png" /> Đang mở cửa
-                  </TrangThai>
-                  <Hours>
-                    <ul>
-                      <li>
-                        <img src="Vector (2).png" />
-                      </li>
-                      <li>
-                        <button>08:30 - 10:30</button>
-                      </li>
-                      <li>
-                        <button
-                          style={{
-                            backgroundColor: "rgba(29, 172, 14, 0.2)",
-                          }}
-                        >
-                          08:30 - 10:30
-                        </button>
-                      </li>
-                    </ul>
-                  </Hours>
-                  <br></br>
-                  <Contact>
-                    <ul>
-                      <li>
-                        <button>Delivery</button>
-                      </li>
-                      <li>
-                        <img src="\Group 47.png" />
-                      </li>
-                    </ul>
-                  </Contact>
-                </ContentTitle>
+                <h3>{item.name}</h3>
+                <p className="addressRestau">
+                  <img className="icon" src="/Vector.png" />
+                  {item.address}
+                  <span style={{ color: "#007AFF" }}>({item.map})</span>
+                </p>
+                <p className="TrangThai">
+                  <img className="icon" src="Vector (1).png" /> {item.trangthai}
+                </p>
+                <div className="Hours">
+                  <ul>
+                    <li>
+                      <img className="icon" src="Vector (2).png" />
+                    </li>
+                    <li>
+                      <button>08:30 - 10:30</button>
+                    </li>
+                    <li>
+                      <button
+                        style={{
+                          backgroundColor: "rgba(29, 172, 14, 0.2)",
+                        }}
+                      >
+                        08:30 - 10:30
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+                <br></br>
+                <div className="Contact">
+                  <ul>
+                    <li>
+                      <button>Delivery</button>
+                    </li>
+                    <li>
+                      <img src="\Group 47.png" />
+                    </li>
+                  </ul>
+                </div>
               </Card>
-            </li>
-          ))}
-        </ul>
-      </ContentFood>
-    </Content>
+            </List.Item>
+          </ItemCard>
+        )}
+      />
+    </ContentFood>
   );
-}
-
+};
 export default ContentClient;
