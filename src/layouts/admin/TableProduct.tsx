@@ -3,7 +3,7 @@ import { Space, Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import CreateProduct from "@/components/admin/CreateProduct";
 import EditProduct from "@/components/admin/EditProduct";
-import DeleteProduct from "@/components/admin/DeleteNhanVien";
+//import DeleteProduct from "@/components/admin/DeleteNhanVien";
 interface DataType {
   key: string;
   id: string;
@@ -65,7 +65,7 @@ const columns: ColumnsType<DataType> = [
           <EditProduct></EditProduct>
         </a>
         <a>
-          <DeleteProduct></DeleteProduct>
+          {/* <DeleteProduct></DeleteProduct> */}
         </a>
       </Space>
     ),

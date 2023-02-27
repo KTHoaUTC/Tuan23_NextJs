@@ -6,7 +6,7 @@ interface DataType {
     password: string;
   }
 
-export const nhanviens: DataType[] = [
+export const nhanvien: DataType[] = [
   {
     id: 1,
     email: "john@gmail.com",

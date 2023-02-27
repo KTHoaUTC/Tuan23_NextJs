@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import { Button, Form, Input, Modal, Select } from 'antd';
-import { EditOutlined } from '@ant-design/icons';
+import React, { useState } from "react";
+import { Button, Form, Input, Modal, Select } from "antd";
+import { EditOutlined } from "@ant-design/icons";
+import { apis } from "@/apis/ApiNhanVien";
 
 interface DataType {
-    id: number;
-    email: string;
-    username: string;
-    password: string;
-    phone: number;
-  }
+  id: number;
+  email: string;
+  username: string;
+  password: string;
+  phone: number;
+}
 
 interface Values {
   title: string;
@@ -18,14 +19,22 @@ interface Values {
 
 interface CollectionCreateFormProps {
   open: boolean;
-  onCreate: (values: Values) => void;
+  onUpdate: any;
   onCancel: () => void;
+  users: {
+    id: number;
+    email: string;
+    username: string;
+    password: string;
+    phone: number;
+  };
 }
 
 const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
   open,
-  onCreate,
+  onUpdate,
   onCancel,
+  users,
 }) => {
   const [form] = Form.useForm();
   return (
@@ -34,16 +43,17 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
       title="Sửa Loại Sản Phẩm"
       okText="Edit"
       cancelText="Cancel"
+
       onCancel={onCancel}
       onOk={() => {
         form
           .validateFields()
           .then((values) => {
             form.resetFields();
-            onCreate(values);
+            onUpdate(users.id, values)
           })
           .catch((info) => {
-            console.log('Validate Failed:', info);
+            console.log("Validate Failed:", info);
           });
       }}
     >
@@ -53,37 +63,72 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
         wrapperCol={{ span: 14 }}
         layout="horizontal"
         name="form_in_modal"
-        initialValues={{ modifier: 'public' }}
+        initialValues={{ modifier: "public" }}
       >
-          <Form.Item name="id" label="Mã Nhân Viên" rules={[{ required: true }]}>
-            <Input />
-          </Form.Item>
-          <Form.Item name="email" label="Email" rules={[{ required: true }]}>
-            <Input />
-          </Form.Item>
-          <Form.Item name="userName" label="Tên" rules={[{ required: true }]}>
-            <Input />
-          </Form.Item>
-          <Form.Item name="passWord" label="Mật Khẩu" rules={[{ required: true }]}>
-            <Input />
-          </Form.Item>
-          <Form.Item name="phoneNumber" label="Số Điện Thoại" rules={[{ required: true }]}>
-            <Input />
-          </Form.Item>
-          <Form.Item name="gioiTinh" label="Giới Tính" rules={[{ required: true }]}>
-            <Input />
-          </Form.Item>
+        {/* <Form.Item  name="id" label="Mã Nhân Viên" rules={[{ required: true }]}>
+          <Input />
+        </Form.Item> */}
+        <Form.Item
+          initialValue={users.email}
+          name="email"
+          label="Email"
+          rules={[{ required: true }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          initialValue={users.username}
+          name="username"
+          label="Tên"
+          rules={[{ required: true }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          initialValue={users.password}
+          name="password"
+          label="Mật Khẩu"
+          rules={[{ required: true }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          initialValue={users.phone}
+          name="phone"
+          label="Số Điện Thoại"
+          rules={[{ required: true }]}
+        >
+          <Input />
+        </Form.Item>
       </Form>
     </Modal>
   );
 };
 
-const EditNhanVien: React.FC = () => {
+const EditNhanVien = ({
+   users,resetData
+}: {
+  resetData:any,
+  users: {
+    id: number;
+    email: string;
+    username: string;
+    password: string;
+    phone: number;
+  };
+}) => {
+  console.log("hhdsud");
   const [open, setOpen] = useState(false);
+  const [nhanviens, setNhanViens] = useState<DataType[]>([]);
 
-  const onCreate = (values: any) => {
-    console.log('Received values of form: ', values);
+  const handleEdit = async (id: number, updateData: DataType) => {
+    await apis.EditDataNhanVien(id, updateData);
+    resetData(id, nhanviens)
     setOpen(false);
+
+    // setNhanViens(
+    //   nhanviens.map((item)=>(item.id===id?{...item,updateData}:item)
+    // )
   };
 
   return (
@@ -94,11 +139,12 @@ const EditNhanVien: React.FC = () => {
           setOpen(true);
         }}
       >
-       <EditOutlined />
+        <EditOutlined />
       </Button>
       <CollectionCreateForm
         open={open}
-        onCreate={onCreate}
+        users={users}
+        onUpdate={handleEdit}
         onCancel={() => {
           setOpen(false);
         }}

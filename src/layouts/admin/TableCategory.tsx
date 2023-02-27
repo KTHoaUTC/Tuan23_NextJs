@@ -1,10 +1,11 @@
 import React from "react";
-import { Space, Table, Tag } from "antd";
+import { Button, Popconfirm, Space, Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import EditProduct from "@/components/admin/EditProduct";
-import DeleteProduct from "@/components/admin/DeleteNhanVien";
+//import DeleteProduct from "@/components/admin/DeleteNhanVien";
 import CreateCategory from "@/components/admin/CreateCategory";
 import EditCategory from "@/components/admin/EditCategory";
+import { DeleteOutlined } from "@ant-design/icons";
 interface DataType {
   key: string;
   id: string;
@@ -61,7 +62,14 @@ const columns: ColumnsType<DataType> = [
           <EditCategory></EditCategory>
         </a>
         <a>
-          <DeleteProduct></DeleteProduct>
+        <Popconfirm
+            title="Bạn chắc chắn muốn xóa?"
+            // onConfirm={() => handleDelete(item.id)}
+          >
+            <Button style={{ float: "right", margin: "0px" }} type="primary">
+              <DeleteOutlined />
+            </Button>
+          </Popconfirm>
         </a>
       </Space>
     ),

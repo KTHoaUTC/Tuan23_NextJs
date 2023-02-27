@@ -11,8 +11,8 @@
 // ) {
 //   res.status(200).json({ name: 'John Doe' })
 // }
-import { nhanviens } from "@/data/nhanvien"
+import { nhanvien } from "@/data/nhanvien"
 
 export default function handler(req: any,res:any){
-  res.status(200).json(nhanviens)
+  res.status(200).json(nhanvien)
 }

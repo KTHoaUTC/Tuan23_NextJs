@@ -6,14 +6,13 @@ import { Button, Popconfirm, Skeleton, Space, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
 interface DataType {
-  index:number;
+
   id: number;
   email: string;
   username: string;
   password: string;
   phone: number;
 }
-
 export default function TableNhanVien({}: any, props: any) {
   const [nhanviens, setNhanViens] = useState<DataType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -21,24 +20,19 @@ export default function TableNhanVien({}: any, props: any) {
     (async () => {
       try {
         const nhanviens= await apis.getDataNhanVien();
-        setNhanViens(nhanviens);      
+        setNhanViens(nhanviens);          
       } catch (e) {
       } finally {
         setIsLoading(false);
-      }
-    })();
+      } 
+    })()
   }, []);
   const handleDelete = async (id: number) => {
     await apis.DeleteDataNhanVien(id);
     setNhanViens(nhanviens.filter((item) => item.id !== id));
   };
-
+  
   const columns: ColumnsType<DataType> = [
-    {
-      title: "STT",
-      dataIndex: "index+1",
-      key: "id",
-    },
     {
       title: "ID",
       dataIndex: "id",
@@ -47,10 +41,8 @@ export default function TableNhanVien({}: any, props: any) {
     {
       title: "Email",
       dataIndex: "email",
-      key: "email",
-      
+      key: "email",   
     },
-
     {
       title: "Tên",
       dataIndex: "username",
@@ -70,10 +62,23 @@ export default function TableNhanVien({}: any, props: any) {
     {
       title: "Action",
       key: "action",
-      render: (_, item: { id: number }) => (
+      render: (users, item: { id: number}) => (
         <Space size="middle">
           <a>
-            <EditNhanVien></EditNhanVien>
+            <EditNhanVien
+            users={users}
+            resetData={(id:Number, userUpdate:DataType)=>{
+              setNhanViens(state => {
+                const newData = [...state].map((users) => {
+                    if (id == users.id) {
+                        return userUpdate
+                    }
+                    return users
+                })
+                return newData
+            })
+            }}
+            />
           </a>
           <Popconfirm
             title="Bạn chắc chắn muốn xóa?"
@@ -93,7 +98,13 @@ export default function TableNhanVien({}: any, props: any) {
   return (
     <>
       <h1> Danh Sách Nhân Viên</h1>
-      <CreateNhanVien></CreateNhanVien>
+      <CreateNhanVien resetData={(newUser: DataType) => {
+                    setNhanViens(state => {
+                        const newData = [...state]
+                        newData.push(newUser)
+                        return newData
+                    })
+                }} />
       <Table columns={columns} dataSource={nhanviens} />
     </>
   );

@@ -1,0 +1,95 @@
+{
+  "users": [
+    {
+      "id": 2,
+      "email": "john@gmail.com",
+      "username": "johnd",
+      "password": "m38rmF$"
+    },
+    {
+      "id": 3,
+      "email": "john@gmail.com",
+      "username": "johnd",
+      "password": "m38rmF$"
+    },
+    {
+      "id": 4,
+      "email": "hoaham@gmail.com",
+      "username": "johnd",
+      "password": "m38rmF$"
+    },
+    {
+      "email": "admin@gmail.com",
+      "username": "hoa",
+      "password": "$2a$10$qjCrjusj.w2Jv7AV6kTRYepJZJO0.nU1PiJvCo8ByKPwuSpNMYFLG",
+      "phone": "0385169700",
+      "id": "444"
+    },
+    {
+      "email": "khuatthihoautc@gmail.com",
+      "password": "$2a$10$vKDwfn7ECSZtDkMo4Rd4aOSLfOhgscF0p5G0dUajhCGKJgjR8apjK",
+      "id": "555555",
+      "username": "444",
+      "phone": "8032586546"
+    },
+    {
+      "email": "khuatthihoaa@gmail.com",
+      "password": "$2a$10$.0gq0Q76NWhCqg4J8i9Du.jBOXMZsYbXQpjmH.fqHXa.sFhCH2ZDu",
+      "id": "43",
+      "username": "gggg",
+      "phone": "223231312"
+    },
+    {
+      "email": "hoaham201220011111@gmail.com",
+      "username": "hoa",
+      "password": "$2a$10$0KXZAWuDyL53upGR8qT7KukqFbtpFLh497/wEgr2lJUtw06RVSBtq",
+      "phone": "5444",
+      "id": "44"
+    },
+    {
+      "email": "adminmmm@gmail.com",
+      "password": "$2a$10$zA6H1ZmTJapjvVVIUvuG0.hSrKrUY74Hu/XUyqtNi0d02oMd0N3hG",
+      "id": "1000",
+      "username": "hoa",
+      "phone": "03851697008"
+    },
+    {
+      "email": "admdddin@gmail.com",
+      "password": "$2a$10$0eimlQwNDmAdnVw4nqY52ucOgGW6MLSzKifwgt0v7XQ2hmeHUoKrK",
+      "username": "ddfd",
+      "phone": "0385169700",
+      "id": "7Ro3g22"
+    },
+    {
+      "email": "adsdsdmin@gmail.com",
+      "username": "fdfdfdf",
+      "password": "$2a$10$lJiiF7nbUoz37paint8uD.xb27WURTucbCvEnRleIT9MOj5M08LgC",
+      "phone": "0385169700",
+      "id": "Re2BOG_"
+    },
+    {
+      "email": "hoaham20122001@gmail.com",
+      "username": "johnd",
+      "password": "$2a$10$J6qg/G6RvgzKn.IZLRCf4u1rw8gNZW8KziFSxDeombJnXfT7gqIRK",
+      "phone": "8032586546",
+      "id": "vKz2-Ds"
+    },
+    {
+      "email": "khuattheeeihoautc@gmail.com",
+      "username": "ewq54fdf",
+      "password": "$2a$10$OdVp/t8tH1x40qNzL.QJzuaVlzGG7zAADYugMkFXkX/e8NJB1QUo6",
+      "phone": "333333",
+      "id": "hIHul-K"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
