@@ -1,5 +1,6 @@
 import { DownOutlined, SearchOutlined, SmileOutlined } from "@ant-design/icons";
 import { Button, Dropdown, Input, MenuProps, message, Space } from "antd";
+import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
 const items: MenuProps["items"] = [
@@ -35,6 +36,7 @@ const HomeHeader = styled(FontHeader)`
   align-content: center;
   @media screen and (max-width: 50rem) {
     background-color: #007aff;
+    max-width: 50rem;
   }
   .logoHeader {
     max-width: 13.8rem;
@@ -47,6 +49,7 @@ const HomeHeader = styled(FontHeader)`
       padding-left: 15rem;
     }
   }
+
   .addressHeader {
     max-width: 20rem;
     border: 0.1rem solid #fcdab0;
@@ -66,7 +69,6 @@ const HomeHeader = styled(FontHeader)`
       width: 40rem;
       height: 2.4rem;
     }
-    
   }
   .buttonHeader {
     max-width: 40rem;
@@ -82,11 +84,17 @@ const HomeHeader = styled(FontHeader)`
       font-weight: 700;
       font-size: 1.2rem;
       @media screen and (max-width: 50rem) {
-      width: 72px;
-      height: 0px;
-      flex-wrap: wrap;
-      padding-right: 1rem;
-    }
+        width: 72px;
+        height: 0px;
+        /* flex-wrap: wrap;
+        padding-right: 1rem;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: stretch;
+        align-content: flex-start; */
+      }
     }
   }
   .language {
@@ -111,6 +119,11 @@ const HomeHeader = styled(FontHeader)`
     flex: none;
     font-weight: 700;
     font-size: 1.2rem;
+    @media screen and (max-width: 50rem) {
+      width: 5.3rem;
+      height: 1.3rem;
+      float: right;
+    }
   }
 `;
 const HeaderClient: React.FC = () => {
@@ -149,7 +162,7 @@ const HeaderClient: React.FC = () => {
         </Dropdown>
       </div>
       <div className="loginHeader">
-        <a> Đăng Nhập </a>
+        <a><Link href="/Auth/">Đăng Nhập</Link>  </a>
       </div>
     </HomeHeader>
   );

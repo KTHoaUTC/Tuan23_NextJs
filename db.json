@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "email": "hoahdsdam20122001@gmail.com",
+      "email": "Hoaham20122001@gmail",
       "username": "hoaaaaaaaa",
       "password": "$2a$10$QV6CgdGCTy9f3HanrI0jDeNWTDEHTVHyf4SoLMQi1B6KCm0pu1I0m",
       "phone": "324234324",
@@ -150,5 +150,11 @@
   ],
   "profile": {
     "name": "typicode"
-  }
+  },
+  "Login": [
+    {
+      "username":"Hoaham20122001@gmail",
+      "password":"123"
+    }
+  ]
 }
