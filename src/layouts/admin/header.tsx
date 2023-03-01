@@ -6,9 +6,11 @@ import React from "react";
 const { Search } = Input;
 const { Header } = Layout;
 const onSearch = (value: string) => console.log(value);
+
+
 const HeaderAdmin: React.FC = () => {
   const { data: session } = useSession();
-
+console.log("session",session)
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -18,7 +20,7 @@ const HeaderAdmin: React.FC = () => {
         <>
           <div className="header">
             <p className="Header_left" style={{ float: "left" }}>
-              {session.user.name}
+              {session.user.email}
             </p>
             <div className="navbar">
               <ul className="Header_right">
@@ -32,9 +34,15 @@ const HeaderAdmin: React.FC = () => {
                 </li>
                 <li>
                   <Link href="/Auth" legacyBehavior>
-                    <button onClick={()=>signOut()} style={{ width: 40, float: "right" }}>
+                    <a
+                      onClick={(e) => {
+                        e.preventDefault();
+                        signOut();
+                      }}
+                      style={{ width: 40, float: "right" }}
+                    >
                       <LogoutOutlined />
-                    </button>
+                    </a>
                   </Link>
                 </li>
               </ul>
@@ -59,7 +67,12 @@ const HeaderAdmin: React.FC = () => {
                 </li>
                 <li>
                   <Link href="/Auth" legacyBehavior>
-                    <a onClick={()=>signIn()} style={{ width: 40, float: "right" }}>
+                    <a
+                      onClick={(e) => {
+                        e.preventDefault();
+                        signIn();}}
+                      style={{ width: 40, float: "right" }}
+                    >
                       SignIn
                     </a>
                   </Link>

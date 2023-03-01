@@ -25,12 +25,13 @@ const LogoutAdmin = () => {
   
   const onSubmit = async () => {
       const result= await signIn("credentials",{
-        usename: userName.current,
+        username: userName.current,
         password: passWord.current,
         redirect: true,
-        callbackUrl:"/"
+        callbackUrl:"/admin"
 
       })
+      console.log(result)
   };
   return (
     <Login>

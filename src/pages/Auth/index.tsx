@@ -10,7 +10,7 @@ interface IProps {
 
 export default function RootLayout({ session }: IProps) {
   return (
-    <SessionProvider session={session}>
+    // <SessionProvider session={session}>
       <div
         style={{
           paddingTop: "5rem",
@@ -25,6 +25,6 @@ export default function RootLayout({ session }: IProps) {
         {/* <HeaderAdmin></HeaderAdmin> */}
         <LogoutAdmin></LogoutAdmin>
       </div>
-    </SessionProvider>
+    // </SessionProvider>
   );
 }

@@ -3,7 +3,7 @@
     {
       "email": "Hoaham20122001@gmail",
       "username": "hoaaaaaaaa",
-      "password": "$2a$10$QV6CgdGCTy9f3HanrI0jDeNWTDEHTVHyf4SoLMQi1B6KCm0pu1I0m",
+      "password": "$2a$10$yweq9CBtDHggGIf2i85.r.nJfLcLsa8VvCImkpAO9/CGHrz8WV5Tm",
       "phone": "324234324",
       "id": 3
     },
@@ -19,26 +19,26 @@
       "password": "$2a$10$HqY388pDv6QHwpZTq5R5ouHcETBQTkTwTg76eonxi.iDoF4aqgPSS",
       "username": "dsdsd",
       "phone": "3242343",
-      "id": "RFddQTs"
+      "id": "2"
     },
     {
       "email": "khuatdfthihoautc@gmail.com",
       "password": "$2a$10$7jojlMMAV20i1gPj9B1Ka.IN/jQMpGmY01WHbgra1ZwrQZFDq3tIi",
       "username": "gggg",
       "phone": "0329324423",
-      "id": "ndGJDsw"
+      "id": "3"
     },
     {
       "email": "khuadsdtthihoautc@gmail.com",
       "password": "$2a$10$V/kD2OSTW0CaFAGeEtkwQulEBhLwa5Fw4mUmjSnd1BKFc2XnDqy1e",
       "username": "sdssd",
       "phone": "80325846546",
-      "id": "tGdhfyw"
+      "id": "4"
     },
     {
       "email": "khuatthiheoautc@gmail.com",
       "password": "$2a$10$AqJyr8rXxFvwIWHtRMhMy.eNiQ6jMZC478h/V0tAzibfh.D7mlS7e",
-      "id": "44",
+      "id": "5",
       "username": "dd",
       "phone": "2342345876"
     },
@@ -47,7 +47,7 @@
       "password": "$2a$10$c1sx8kpA4nRGJZvZsKIBWOdXA4aWdsEiZYi4UT3U4DuEHuRzDIW5C",
       "username": "fdf",
       "phone": "0385169700",
-      "id": "XDnrWGd"
+      "id": "6"
     }
   ],
   "listFood": [
@@ -151,10 +151,23 @@
   "profile": {
     "name": "typicode"
   },
-  "Login": [
+  "user": [
     {
-      "username":"Hoaham20122001@gmail",
-      "password":"123"
+      "id": 1,
+      "email": "admin@gmail",
+      "password": "123123",
+      "name": "admin"
+    },
+    {
+      "email": "hoa@gmail",
+      "password": "123",
+      "id": 2,
+      "name": "hoa"
+    },
+    {
+      "username": "admin@gmail",
+      "password": "123123",
+      "id": 3
     }
   ]
 }

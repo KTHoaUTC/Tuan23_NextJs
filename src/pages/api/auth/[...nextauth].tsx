@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth, { NextAuthOptions } from "next-auth";
 export const authOptions: NextAuthOptions = {
@@ -12,7 +12,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         const { username, password } = credentials as any;
-        const res = await fetch("http://localhost:3100/Login", {
+        const res = await fetch("http://localhost:3100/user", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -29,11 +29,30 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  callbacks:{
+    jwt: ({token, user})=>{
+      if(user){
+        token.id= user.id;
+      }
+      return token
+    },
+    // session: ({session, token})=>{
+    //   if(token){
+    //     session.id = token.id;
+    //   }
+    //   return session
+    // }
+  },
+  secret:"test",
+  jwt:{
+    secret:"test",
+    // encryption:true,
+  },
   session: {
     strategy: "jwt",
   },
   pages: {
-    signIn: "/Auth",
+    signIn: "/Auth/",
   },
 };
 export default NextAuth(authOptions);
