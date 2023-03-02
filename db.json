@@ -48,6 +48,34 @@
       "username": "fdf",
       "phone": "0385169700",
       "id": "6"
+    },
+    {
+      "email": "adfffmin@gmail.com",
+      "password": "$2a$10$pCzOynZMvcJNEfWZbdz99eGJzJsKl9haOZrzg9ATqEEV3xqQOWM/.",
+      "username": "ffff",
+      "phone": "0385169700",
+      "id": "vdh15Z8"
+    },
+    {
+      "email": "hoaham20122001@gmail.com",
+      "password": "$2a$10$KaKP9O9zbd89oXV/TxdHyuGe2mSIbuuHwcU/SnhUGzfHaE3sKqHkC",
+      "username": "fffff",
+      "phone": "8032586546",
+      "id": "IxVdw1Q"
+    },
+    {
+      "email": "admddfin@gmail.com",
+      "password": "$2a$10$.YzGSKeFKzZdIV9qwbO8l.Vydo3NSkO6z36fkS9bqb7kmMCwLjY9C",
+      "username": "334ddf",
+      "phone": "0385169700",
+      "id": "-8hcKRp"
+    },
+    {
+      "email": "khuatthihrroautc@gmail.com",
+      "username": "hoahoa",
+      "password": "$2a$10$z7zFyEeiqR1.VXn681YA1OVX0XczraBfhW3Rpr.slsUBbodTbu1SK",
+      "phone": "5433454",
+      "id": "bMxzA-B"
     }
   ],
   "listFood": [
@@ -188,6 +216,21 @@
       "username": "",
       "password": "",
       "id": 7
+    },
+    {
+      "username": "gggg",
+      "password": "gggggg",
+      "id": 8
+    },
+    {
+      "username": "ffdf@gfgsd.com",
+      "password": "33424",
+      "id": 9
+    },
+    {
+      "username": "",
+      "password": "",
+      "id": 10
     }
   ]
 }

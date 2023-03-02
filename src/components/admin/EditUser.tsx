@@ -13,7 +13,7 @@ interface CollectionEditFormProps {
   open: boolean;
   onUpdate: any;
   onCancel: () => void;
-  users: {
+  infoUers: {
     id: number;
     email: string;
     username: string;
@@ -25,7 +25,7 @@ const CollectionEditForm: React.FC<CollectionEditFormProps> = ({
   open,
   onUpdate,
   onCancel,
-  users,
+  infoUers,
 }) => {
   const [form] = Form.useForm();
   return (
@@ -40,7 +40,7 @@ const CollectionEditForm: React.FC<CollectionEditFormProps> = ({
           .validateFields()
           .then((values) => {
             form.resetFields();
-            onUpdate(users.id, values);
+            onUpdate(infoUers.id, values);
           })
           .catch((info) => {
             console.log("Validate Failed:", info);
@@ -59,7 +59,7 @@ const CollectionEditForm: React.FC<CollectionEditFormProps> = ({
           <Input />
         </Form.Item> */}
         <Form.Item
-          initialValue={users.email}
+          initialValue={infoUers.email}
           name="email"
           label="Email"
           rules={[{ required: true }]}
@@ -67,7 +67,7 @@ const CollectionEditForm: React.FC<CollectionEditFormProps> = ({
           <Input />
         </Form.Item>
         <Form.Item
-          initialValue={users.username}
+          initialValue={infoUers.username}
           name="username"
           label="Tên"
           rules={[{ required: true }]}
@@ -75,7 +75,7 @@ const CollectionEditForm: React.FC<CollectionEditFormProps> = ({
           <Input />
         </Form.Item>
         <Form.Item
-          initialValue={users.password}
+          initialValue={infoUers.password}
           name="password"
           label="Mật Khẩu"
           rules={[{ required: true }]}
@@ -83,7 +83,7 @@ const CollectionEditForm: React.FC<CollectionEditFormProps> = ({
           <Input />
         </Form.Item>
         <Form.Item
-          initialValue={users.phone}
+          initialValue={infoUers.phone}
           name="phone"
           label="Số Điện Thoại"
           rules={[{ required: true }]}
@@ -95,11 +95,11 @@ const CollectionEditForm: React.FC<CollectionEditFormProps> = ({
   );
 };
 const EditUser = ({
-  users,
+  infoUers,
   resetData,
 }: {
   resetData: any;
-  users: {
+  infoUers: {
     id: number;
     email: string;
     username: string;
@@ -132,7 +132,8 @@ const EditUser = ({
       </Button>
       <CollectionEditForm
         open={open}
-        users={users}
+        
+        infoUers={infoUers}
         onUpdate={handleEdit}
         onCancel={() => {
           setOpen(false);

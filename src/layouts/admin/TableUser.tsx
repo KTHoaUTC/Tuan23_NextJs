@@ -60,18 +60,18 @@ export default function TableUser({}: any, props: any) {
     {
       title: "Action",
       key: "action",
-      render: (users, item: { id: number}) => (
+      render: (infoUers, item: { id: number}) => (
         <Space size="middle">
           <a>
             <EditUser
-            users={users}
+            infoUers={infoUers}
             resetData={(id:Number, userUpdate:DataType)=>{
               setNhanViens(state => {
-                const newData = [...state].map((users) => {
-                    if (id == users.id) {
+                const newData = [...state].map((infoUers) => {
+                    if (id == infoUers.id) {
                         return userUpdate
                     }
-                    return users
+                    return infoUers
                 })
                 return newData
             })

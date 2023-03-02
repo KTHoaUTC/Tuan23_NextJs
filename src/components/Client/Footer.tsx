@@ -67,7 +67,7 @@ const FooterMain = styled(FontFooter)`
       height: 6rem;
     }
     p {
-        margin-left: 7.8rem;
+      margin-left: 7.8rem;
       align-items: center;
       font-size: 1rem;
       color: #828282;
@@ -80,7 +80,6 @@ const FooterMain = styled(FontFooter)`
       align-content: center;
       margin-left: 11rem;
       li {
-        
         a {
           padding-right: 1rem;
           img {
@@ -124,6 +123,83 @@ const FooterMain = styled(FontFooter)`
       }
     }
   }
+
+  @media screen and (max-width: 50rem) {
+    max-width: 50rem;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    .FooterLeft1 {
+      display: none;
+    }
+    .FooterLeft2 {
+      display: none;
+    }
+    .FooterCenter {
+      .logoFooter {
+        padding-left: 2rem;
+        margin-left: 10rem;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+      }
+      p {
+        font-weight: 400;
+        line-height: 1rem;
+        width: 40rem;
+        margin-left: 1rem;
+        align-items: center;
+        font-size: 1rem;
+        color: #828282;
+      }
+      ul {
+        padding-left: 6.5rem;
+        list-style-type: none;
+        display: flex;
+        li {
+          margin-right: 1rem;
+          img {
+            width: 2rem;
+          }
+        }
+      }
+    }
+    .FooterRight {
+    width: 30rem;
+    margin-left: 5rem;
+    ul {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      .Company {
+        padding-bottom: 0.1rem;
+        padding-left: 0.4rem;
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: #000000;
+      }
+      .item_Info {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        line-height: 1.2rem;
+        color: #080800;
+        font-size: 1rem;
+      }
+      img {
+        padding-top: 1.7rem;
+        width: 16.4rem;
+        height: 9rem;
+      }
+    }
+  }
+  }
+
 `;
 const FooterClient: React.FC = () => {
   return (
@@ -157,42 +233,36 @@ const FooterClient: React.FC = () => {
         <p> @ Capichi 2021 - A Food Delivery Corporation</p>
         <ul>
           <li>
-            <a>
-              <img src="/Instagram.png"></img>
-            </a>
+            <img src="/Instagram.png"></img>
           </li>
           <li>
-            <a>
-              <img src="/Instagram.png"></img>
-            </a>
+            <img src="/Instagram.png"></img>
           </li>
           <li>
-            <a>
-              <img src="/Instagram.png"></img>
-            </a>
+            <img src="/Instagram.png"></img>
           </li>
         </ul>
       </div>
       <div className="FooterRight">
         <ul className="Address_Company">
-          <p>Địa chỉ công ty</p>
-          <li> Công ty cổ phần Capichi</li>
-          <li>
+          <p className="Company">Địa chỉ công ty</p>
+          <li className="item_Info"> Công ty cổ phần Capichi</li>
+          <li className="item_Info">
             Tầng 4, tòa nhà VietinBank, số 1 Lê Thái Tông, phường Cầu giấy, quận
             Cầu Giấy, Hà Nội
           </li>
-          <li>
+          <li className="item_Info">
             Giấy CN ĐKDN số: 02264651313, do sở Kế hoạch và Đầu tư TP. Hà Nội
             cấp ngày 11/12/2020, sửa đổi lần thứ 21, ngày 01/02/2021
           </li>
-          <li>
+          <li className="item_Info">
             Số điện thoại:<span style={{ color: "red" }}> 1900 1522</span>
           </li>
-          <li>
+          <li className="item_Info">
             Email:
             <span style={{ color: "#2E92FF" }}>capichi@gmail.com</span>
           </li>
-          <li>
+          <li className="item_Info">
             <img src="image 2.png"></img>
           </li>
         </ul>

@@ -285,14 +285,6 @@ const HeaderResponsive = styled(FontHeader)`
 const HeaderClient: React.FC = () => (
   <>
     <HomeHeader>
-      <Row >
-        <Col>
-        </Col>
-        <Col>
-        </Col>
-        <Col>
-        </Col>
-      </Row>
       <div className="logoHeader">
         <img className="imgLogo" src="/Logo.png" alt="" />
       </div>
@@ -363,7 +355,7 @@ const HeaderClient: React.FC = () => (
             prefix={<SearchOutlined style={{ color: "#FF881D" }} />}>
 
             </Input>
-          <div className="addressHeader">
+          {/* <div className="addressHeader">
             <Dropdown menu={menuProps}>
               <Button className="btnAdd">
                 <Space>
@@ -372,7 +364,7 @@ const HeaderClient: React.FC = () => (
                 </Space>
               </Button>
             </Dropdown>
-          </div>
+          </div> */}
         </div>
       </div>
     </HeaderResponsive>

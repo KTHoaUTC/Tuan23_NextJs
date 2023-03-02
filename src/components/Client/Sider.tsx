@@ -1,8 +1,6 @@
 import React from "react";
-
 import { Layout, theme } from "antd";
 import styled from "styled-components";
-
 const { Sider } = Layout;
 const FontMain = styled.div`
   font-family: "Gilroy";
@@ -12,13 +10,15 @@ const FontMain = styled.div`
 `;
 const MenuContent = styled(FontMain)`
   float: left;
+  margin-left: 5rem;
   ul {
     list-style-type: none;
     width: 25.8rem;
-    height: 130rem;
+    height: 120rem;
     background: #ffffff;
     box-shadow: 0px 0px 2px rgba(40, 41, 61, 0.04),
       0px 4px 8px rgba(96, 97, 112, 0.16);
+
     p {
       width: 19rem;
       height: 4rem;
@@ -36,7 +36,6 @@ const MenuContent = styled(FontMain)`
         height: 3.2rem;
       }
     }
-  
     li {
       padding-top: 1rem;
       line-height: 2.4rem;
@@ -51,14 +50,29 @@ const MenuContent = styled(FontMain)`
       }
     }
   }
-
   @media screen and (max-width: 50rem) {
-    overflow: auto;
-    ul {
+    .menuContent {
+      display: none;
+    }
+    margin-left: 0rem;
+    float: left;
+    #style-1::-webkit-scrollbar {
+      width: 0.6rem;
+      background-color: #ffffff;
+    }
+    #style-1::-webkit-scrollbar-thumb {
+      border-radius: 1rem;
+      background-color: #e0e1e0;
+      border: 1rem solid #ccc;
+    }
+    .menuContent {
+      margin: 0 auto;
+      overflow-x: scroll;
       display: flex;
       list-style-type: none;
-      width: 30rem;
-      height: 7rem;
+      width: 25em;
+      height: 9rem;
+
       p {
         margin-right: 2.5rem;
         width: 3.2rem;
@@ -88,9 +102,9 @@ const MenuContent = styled(FontMain)`
         display: flex;
         justify-content: center;
         align-items: center;
+        text-align: center;
         flex-direction: column;
         img {
-          margin-bottom: 0.5rem;
           width: 2.5rem;
           height: 2.5rem;
         }
@@ -106,7 +120,7 @@ const SiderClient: React.FC = () => {
   return (
     <Sider style={{ backgroundColor: colorBgContainer }}>
       <MenuContent>
-        <ul>
+        <ul className="menuContent" id="style-1">
           <p>
             <img src="/all.png" />
             All

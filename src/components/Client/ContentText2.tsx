@@ -20,7 +20,7 @@ const ContentFood = styled(FontMain)`
     max-width: 100%;
     grid-gap: 2rem 2rem;
     display: grid;
-    background-color: red;
+  //  background-color: red;
     grid-template-columns: 32% 32% 32%;
     grid-template-rows: 1fr 1fr 1fr;
     .cell-1 {
@@ -111,10 +111,10 @@ const ContentFood = styled(FontMain)`
         width: 1.5rem;
       }
     }
-  }
 
-  @media screen and (max-width: 50rem) {
-    // display: none;
+    /* @media screen and (max-width: 50rem) {
+    display: none;
+  } */
   }
 `;
 
@@ -127,7 +127,7 @@ interface Product {
   map: string;
 }
 
-const ContentMobie: React.FC = () => {
+const ContentClientTest: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -147,74 +147,76 @@ const ContentMobie: React.FC = () => {
     return <Skeleton active> </Skeleton>;
   }
   return (
-    <ContentFood>
-      <div className="contaniner">
-        <List
-          grid={{ gutter: 15, column: 3 }}
-          itemLayout="vertical"
-          size="large"
-          pagination={{
-             onChange: (page) => {
-             console.log(page);
-             },
-             pageSize: 6,
-           }}
-          dataSource={products}
-          renderItem={(item) => (
-            <div className="cell cell-1">
-              <List.Item key={item.id}>
-                <Card
-                  hoverable
-                  style={{ width: 340, height: "95%" }}
-                  cover={<img alt={item.name} src={item.img} />}
-                >
-                  <h3>{item.name}</h3>
-                  <p className="addressRestau">
-                    <img className="icon" src="/Vector.png" />
-                    {item.address}
-                    <span style={{ color: "#007AFF" }}>({item.map})</span>
-                  </p>
-                  <p className="TrangThai">
-                    <img className="icon" src="Vector (1).png" />{" "}
-                    {item.trangthai}
-                  </p>
-                  <div className="Hours">
-                    <ul>
-                      <li>
-                        <img className="icon" src="Vector (2).png" />
-                      </li>
-                      <li>
-                        <button>08:30 - 10:30</button>
-                      </li>
-                      <li>
-                        <button
-                          style={{
-                            backgroundColor: "rgba(29, 172, 14, 0.2)",
-                          }}
-                        >
-                          08:30 - 10:30
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-                  <br></br>
-                  <div className="Contact">
-                    <ul>
-                      <li>
-                        <button>Delivery</button>
-                      </li>
-                      <li>
-                        <img src="\Group 47.png" />
-                      </li>
-                    </ul>
-                  </div>
-                </Card>
-              </List.Item>
-            </div>
-          )}
-        />
-      </div>
-    </ContentFood>
+    <>
+      <ContentFood>
+        <div className="contaniner">
+          <List
+            // grid={{ gutter: 15, column: 3 }}
+            itemLayout="vertical"
+            size="large"
+            pagination={{
+              onChange: (page) => {
+                console.log(page);
+              },
+              pageSize: 9,
+            }}
+            dataSource={products}
+            renderItem={(item) => (
+              <div className="cell-1">
+                <List.Item key={item.id}>
+                  <Card
+                    hoverable
+                    style={{ width: 340, height: "95%" }}
+                    cover={<img alt={item.name} src={item.img} />}
+                  >
+                    <h3>{item.name}</h3>
+                    <p className="addressRestau">
+                      <img className="icon" src="/Vector.png" />
+                      {item.address}
+                      <span style={{ color: "#007AFF" }}>({item.map})</span>
+                    </p>
+                    <p className="TrangThai">
+                      <img className="icon" src="Vector (1).png" />{" "}
+                      {item.trangthai}
+                    </p>
+                    <div className="Hours">
+                      <ul>
+                        <li>
+                          <img className="icon" src="Vector (2).png" />
+                        </li>
+                        <li>
+                          <button>08:30 - 10:30</button>
+                        </li>
+                        <li>
+                          <button
+                            style={{
+                              backgroundColor: "rgba(29, 172, 14, 0.2)",
+                            }}
+                          >
+                            08:30 - 10:30
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                    <br></br>
+                    <div className="Contact">
+                      <ul>
+                        <li>
+                          <button>Delivery</button>
+                        </li>
+                        <li>
+                          <img src="\Group 47.png" />
+                        </li>
+                      </ul>
+                    </div>
+                  </Card>
+                </List.Item>
+              </div>
+            )}
+          />
+        </div>
+      </ContentFood>
+    </>
   );
 };
-export default ContentMobie;
+export default ContentClientTest;

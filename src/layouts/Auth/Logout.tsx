@@ -3,7 +3,7 @@ import { Button, Checkbox, Form, Input } from "antd";
 import { FacebookOutlined, GooglePlusOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import { signIn } from "next-auth/react";
-
+import cookie from "js-cookie";
 const onFinish = (values: any) => {
   console.log("Success:", values);
 };
@@ -19,11 +19,12 @@ const Login = styled.div`
   padding-left: 30rem;
 `;
 
-const LogoutAdmin = () => {
+export default function LogoutAdmin  ()  {
   const userName= useRef("");
   const passWord= useRef("")
   
   const onSubmit = async () => {
+    cookie.set("token","ABCD",{expires:1/24});
       const result= await signIn("credentials",{
         username: userName.current,
         password: passWord.current,
@@ -75,8 +76,9 @@ const LogoutAdmin = () => {
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button onClick={onSubmit} type="primary" htmlType="submit">
+          <Button  type="primary" htmlType="submit" onClick={onSubmit}>
             Login
+         
           </Button>
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
@@ -94,6 +96,5 @@ const LogoutAdmin = () => {
     </Login>
   );
 };
-export default LogoutAdmin;
 
 

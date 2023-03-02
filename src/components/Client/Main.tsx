@@ -1,21 +1,22 @@
+import { Layout, theme } from "antd";
 import React from "react";
-import { Col, Layout, Row, theme } from "antd";
-import SiderClient from "./Sider";
 import ContentClient from "./Content";
-import ContentClientTest from "./ContentTest";
-import ContentTest2 from "./Content";
+import ContentMobie from "./ContentTest";
+import ContentClientTest from "./ContentText2";
+import SiderClient from "./Sider";
 const { Content } = Layout;
+
 const MainClient: React.FC = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
   return (
-    <Content style={{ padding: "0 5rem" }}>
+    <Content>
       <Layout style={{ background: colorBgContainer }}>
-       
-            <SiderClient></SiderClient>
-         
-            <ContentClient></ContentClient>
+        <SiderClient></SiderClient>
+       <ContentClient></ContentClient> 
+        {/* <ContentMobie></ContentMobie>*/}
+         {/* <ContentClientTest></ContentClientTest> */}
       </Layout>
     </Content>
   );
