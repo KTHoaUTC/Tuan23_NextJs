@@ -18,10 +18,7 @@ const ContentFood = styled(FontMain)`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  @media screen and (max-width: 50rem) {
-    flex-wrap: nowrap;
-    background-color: red;
-  } 
+ 
   h3 {
     width: 19rem;
     overflow: hidden;
@@ -108,6 +105,11 @@ const ContentFood = styled(FontMain)`
     padding-right: 0.5rem;
     width: 1.5rem;
   }
+  @media screen and (max-width: 50rem) {
+    flex-wrap: nowrap;
+    background-color: red;
+    display: none;
+  } 
 `;
 const ItemCard = styled.div`
   display: flex;

@@ -30,6 +30,10 @@ const LogoutAdmin = () => {
         redirect: true,
         callbackUrl:"/admin"
 
+      }).then(responsive=>{
+        console.log(responsive)
+      }).catch(error=>{
+        console.log(error)
       })
       console.log(result)
   };

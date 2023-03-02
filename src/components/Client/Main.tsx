@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, theme } from "antd";
+import { Col, Layout, Row, theme } from "antd";
 import SiderClient from "./Sider";
 import ContentClient from "./Content";
 import ContentClientTest from "./ContentTest";
@@ -12,8 +12,10 @@ const MainClient: React.FC = () => {
   return (
     <Content style={{ padding: "0 5rem" }}>
       <Layout style={{ background: colorBgContainer }}>
-        <SiderClient></SiderClient>       
-        <ContentClient></ContentClient>
+       
+            <SiderClient></SiderClient>
+         
+            <ContentClient></ContentClient>
       </Layout>
     </Content>
   );

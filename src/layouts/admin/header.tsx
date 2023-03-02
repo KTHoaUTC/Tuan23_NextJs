@@ -7,10 +7,11 @@ const { Search } = Input;
 const { Header } = Layout;
 const onSearch = (value: string) => console.log(value);
 
-
 const HeaderAdmin: React.FC = () => {
-  const { data: session } = useSession();
-console.log("session",session)
+  const { data: session } = useSession({
+    required: true
+  });
+  console.log("session", session);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -70,7 +71,8 @@ console.log("session",session)
                     <a
                       onClick={(e) => {
                         e.preventDefault();
-                        signIn();}}
+                        signIn();
+                      }}
                       style={{ width: 40, float: "right" }}
                     >
                       SignIn

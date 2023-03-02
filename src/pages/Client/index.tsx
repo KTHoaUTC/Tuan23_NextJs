@@ -1,12 +1,9 @@
-import React from 'react';
-import { Layout } from 'antd';
+import BannerHeader from '@/components/Client/Banner';
 import FooterClient from '@/components/Client/Footer';
 import HeaderClient from '@/components/Client/Header';
 import MainClient from '@/components/Client/Main';
-import BannerHeader from '@/components/Client/Banner';
-import FooterClientTest from '@/components/Client/Footer';
-//import HeaderClientTest from '@/components/Client/Header';
-const { Header, Content, Footer, Sider } = Layout;
+import { Layout } from 'antd';
+import React from 'react';
 const AppClient: React.FC = () => {
   return (
     <div style={{position:'relative'}}>
