@@ -14,7 +14,7 @@ const HeaderAdmin: React.FC = () => {
   //  // required: true
   // }
   );
-  console.log("session", session);
+  console.log("session", session?.user?.email);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -26,6 +26,7 @@ const HeaderAdmin: React.FC = () => {
             <p className="Header_left" style={{ float: "left" }}>
               {session.user.email}
             </p>
+            
             <div className="navbar">
               <ul className="Header_right">
                 <li>

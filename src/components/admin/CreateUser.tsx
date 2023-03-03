@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Input, Modal, Radio } from "antd";
-import axios from "axios";
 import { apis } from "@/apis/ApiNhanVien";
-
-
 interface DataType {
   id: number;
   email: string;

@@ -9,8 +9,9 @@ const FontMain = styled.div`
   font-size: 1.6rem;
 `;
 const MenuContent = styled(FontMain)`
-  float: left;
   margin-left: 5rem;
+  display: flex;
+  float:left;
   ul {
     list-style-type: none;
     width: 25.8rem;
@@ -55,7 +56,7 @@ const MenuContent = styled(FontMain)`
       display: none;
     }
     margin-left: 0rem;
-    float: left;
+   // float: left;
     #style-1::-webkit-scrollbar {
       width: 0.6rem;
       background-color: #ffffff;
@@ -118,7 +119,7 @@ const SiderClient: React.FC = () => {
   } = theme.useToken();
 
   return (
-    <Sider style={{ backgroundColor: colorBgContainer }}>
+    // <Sider style={{ backgroundColor: colorBgContainer }}>
       <MenuContent>
         <ul className="menuContent" id="style-1">
           <p>
@@ -175,7 +176,7 @@ const SiderClient: React.FC = () => {
           </li>
         </ul>
       </MenuContent>
-    </Sider>
+    // </Sider>
   );
 };
 

@@ -1,6 +1,7 @@
 import { DownOutlined, SearchOutlined, SmileOutlined } from "@ant-design/icons";
 import {Row, Col, Button, Dropdown, Input, MenuProps, message, Space } from "antd";
 import Link from "next/link";
+import { signIn, signOut, useSession } from "next-auth/react";
 import React from "react";
 import styled from "styled-components";
 const items: MenuProps["items"] = [
@@ -282,7 +283,11 @@ const HeaderResponsive = styled(FontHeader)`
 //     }
 //   }
 // `;
-const HeaderClient: React.FC = () => (
+const HeaderClient: React.FC = () => {
+  const { data: session } = useSession()
+  return(
+
+
   <>
     <HomeHeader>
       <div className="logoHeader">
@@ -369,6 +374,7 @@ const HeaderClient: React.FC = () => (
       </div>
     </HeaderResponsive>
   </>
-);
+    )
+};
 
 export default HeaderClient;
