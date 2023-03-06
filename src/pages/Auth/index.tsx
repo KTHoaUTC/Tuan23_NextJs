@@ -1,13 +1,8 @@
-import HeaderAdmin from "@/layouts/admin/header";
 import LogoutAdmin from "@/layouts/Auth/Logout";
-import { SessionProvider } from "next-auth/react";
 import Link from "next/link";
-import type { NextPageWithLayout } from "../_app";
-
 interface IProps {
   session: any;
 }
-
 export default function RootLayout({ session }: IProps) {
   return (
     // <SessionProvider session={session}>

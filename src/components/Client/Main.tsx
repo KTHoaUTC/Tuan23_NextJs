@@ -5,17 +5,21 @@ import ContentClient from "./Content";
 import SiderClient from "./Sider";
 const { Content } = Layout;
 
-const Main= styled.div`
-@media screen and (max-width: 144rem) {
-   
-      display: flex;
-}
-@media screen and (max-width: 50rem) {
-  display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-}
-`
+const Main = styled.div`
+  @media screen and (min-width: 780px) {
+    display: flex;
+  }
+  @media screen and (max-width: 800px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  @media screen and (max-width: 390px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+`;
 const MainClient: React.FC = () => {
   const {
     token: { colorBgContainer },
@@ -25,9 +29,8 @@ const MainClient: React.FC = () => {
       <Layout style={{ background: colorBgContainer }}>
         <Main>
           <SiderClient></SiderClient>
-        <ContentClient></ContentClient>
+          <ContentClient></ContentClient>
         </Main>
-        
       </Layout>
     </Content>
   );
