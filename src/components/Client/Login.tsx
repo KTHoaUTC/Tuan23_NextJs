@@ -7,16 +7,9 @@ import {
 } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
 import { break_points } from "@/utils/styled";
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
-const onFinish = (values: any) => {
-  console.log("Success:", values);
-};
-
-const onFinishFailed = (errorInfo: any) => {
-  console.log("Failed:", errorInfo);
-};
-
+import { getSession, signIn } from "next-auth/react";
 const HomeLogin = styled.div({
   width: "100%",
   display: "flex",
@@ -150,6 +143,8 @@ const GoogleLogin = styled.button({
 });
 
 const LoginClient = () => {
+  const email= useRef("");
+  const password= useRef("")
   return (
     <HomeLogin>
       <LoginTitle> LOGIN </LoginTitle>
@@ -158,10 +153,7 @@ const LoginClient = () => {
           name="basic"
           labelCol={{ span: 5 }}
           wrapperCol={{ span: 40 }}
-          // style={{ maxWidth: 900 }}
           initialValues={{ remember: true }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
           <Form.Item
@@ -169,10 +161,11 @@ const LoginClient = () => {
             rules={[{ required: true, message: "Please input your username!" }]}
           >
             <Input
-              type={"username"}
+              type="email"
               size="large"
-              placeholder="Nhập email, username..."
+              placeholder="Nhập email..."
               prefix={<UserOutlined />}
+              onChange={(e)=>(email.current=e.target.value)}
             />
           </Form.Item>
           <Form.Item
@@ -180,12 +173,13 @@ const LoginClient = () => {
             rules={[{ required: true, message: "Please input your password!" }]}
           >
             <Input.Password
-              type={"password"}
+              type="password"
               size="large"
               placeholder="Nhâp password..."
               iconRender={(visible) =>
                 visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
               }
+              onChange={(e)=>(password.current=e.target.value)}
             />
             <a href="#" className="ForgotPassword">
               <i> Forgot your password?</i>
@@ -199,7 +193,11 @@ const LoginClient = () => {
             <Checkbox style={{fontSize:'1rem'}}>Remember me</Checkbox>
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-              <Button style={{fontSize:'1.2rem', height:'3rem', width:'6rem'}} type="primary" htmlType="submit">
+              <Button style={{fontSize:'1.2rem', height:'3rem', width:'6rem'}} type="primary" htmlType="submit"
+              onClick={()=> signIn("credentials",{
+                email: email.current,
+                password: password.current,
+              })}>
                 Login
               </Button>
           </Form.Item>
@@ -221,3 +219,12 @@ const LoginClient = () => {
   );
 };
 export default LoginClient;
+export async function getServerSideProps(contex:any) {
+  const {req}= contex;
+  const session= await getSession({req});
+  if(session){
+    return{
+      redirect:{ destination:"/Client"},
+    };
+  }
+}

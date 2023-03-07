@@ -382,7 +382,17 @@ const HeaderResponsive = styled(FontHeader)`
 //   }
 // `;
 const HeaderClient: React.FC = () => {
-  // const { data: session } = useSession();
+//  const { data: session } = useSession();
+//  const user = session?.user;
+//  if (user?.role !== "user") {
+//      return (
+//          <section className="grid h-screen place-items-center">
+//              <div className="w-25">
+//                  <p>You do not have permission to view this page!</p>
+//              </div>
+//          </section>
+//      );
+//  }
   return (
     <>
       <HomeHeader>
