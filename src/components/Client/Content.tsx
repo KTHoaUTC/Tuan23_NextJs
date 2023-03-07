@@ -1,9 +1,8 @@
-import React from "react";
+import { Card, Layout, List, Skeleton } from "antd";
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { Card, Row, Col, Layout, Skeleton } from "antd";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { List } from "antd";
+import Image from "next/image";
 
 const { Content } = Layout;
 const FontMain = styled.div`

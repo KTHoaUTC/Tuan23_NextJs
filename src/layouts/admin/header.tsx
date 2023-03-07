@@ -13,7 +13,7 @@ const HeaderAdmin: React.FC = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-
+  
   const user = session?.user;
   if (user?.role !== "admin") {
     return (
@@ -71,7 +71,7 @@ const HeaderAdmin: React.FC = () => {
               />
             </li>
             <li>
-              <Link href="/Auth" legacyBehavior>
+              <Link href="/Auth/Logout" legacyBehavior>
                 <a
                   onClick={(e) => {
                     e.preventDefault();

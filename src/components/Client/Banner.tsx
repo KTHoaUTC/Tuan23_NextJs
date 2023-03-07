@@ -1,6 +1,7 @@
   import React from "react";
   import styled from "styled-components";
-    
+  import Image from "next/image";
+  import BannerImg from "../../../public/Banner.png" 
   const HomeHeader = styled.div`
     text-align: center;
     align-items: center;
@@ -12,7 +13,7 @@
   `;
   const Banner = styled.div`
   @media screen and (min-width: 780px) {
-    img {
+    .imgBanner {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -20,7 +21,7 @@
     }
   }
   @media screen and (max-width: 800px) {
-    img {
+    .imgBanner {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -31,7 +32,7 @@
     width: 50rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    img {
+    .imgBanner {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -44,7 +45,8 @@
     return (
       <HomeHeader>
         <Banner>
-          <img src="/Banner.jpg" />
+          {/* <img src="/Banner.jpg" /> */}
+          <Image className="imgBanner" src={BannerImg} alt=""/>
         </Banner>
       </HomeHeader>
     );
