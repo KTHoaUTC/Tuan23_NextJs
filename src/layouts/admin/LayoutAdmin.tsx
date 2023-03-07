@@ -7,7 +7,7 @@ import FooterAdmin from "./footer";
 import HeaderAdmin from "./header";
 const { Content } = Layout;
 
-export default function AppAdmin1({ children, session }: any) {
+export default function AppAdmin({ children, session }: any) {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -35,7 +35,7 @@ export default function AppAdmin1({ children, session }: any) {
           </Content>
           <FooterAdmin />
         </Layout>
-      </Layout>{" "}
+      </Layout>
     </SessionProvider>
   );
 }

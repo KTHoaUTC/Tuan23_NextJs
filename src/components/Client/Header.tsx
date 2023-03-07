@@ -382,7 +382,7 @@ const HeaderResponsive = styled(FontHeader)`
 //   }
 // `;
 const HeaderClient: React.FC = () => {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   return (
     <>
       <HomeHeader>

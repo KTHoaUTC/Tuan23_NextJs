@@ -1,4 +1,4 @@
-import Image from "next/image";
+ import Image from "next/image";
 
 // import React from 'react';
 // import {  Layout} from 'antd';
@@ -10,10 +10,10 @@ import Image from "next/image";
 // };
 // export default FooterAdmin
 
-//import { Inter } from "@next/font/google";
-import styles from "./page.module.css";
+// import { Inter } from "@next/font/google";
+// import styles from "./page.module.css";
 
-//const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 // export default function Home() {
 //   return (
